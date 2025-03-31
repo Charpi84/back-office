@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <title>Back-Office</title>
+</head>
+
+<body>
+    <main>
+        <section class="back-office">
+            <button id="burgerBtn" class="burger-menu">&#9776;</button>
+            <div class="container">
+                <div class="left">
+                    <div class="logo">
+                        <img src="assets/images/icon/Logo.png" alt="Logo My Market">
+                    </div>
+                    <nav class="navbar">
+                        <ul>
+                            <li><img src="assets/images/icon/compta.png" alt="" /> Comptabilité</li>
+                            <li><img src="assets/images/icon/produit.png" alt="" /> Produits</li>
+                            <li><img src="assets/images/icon/truck.png" alt="" /> Fournisseurs</li>
+                            <li><img src="assets/images/icon/commande.png" alt="" /> Commandes</li>
+                            <li><img src="assets/images/icon/settings.png" alt="" /> Paramètres</li>
+                        </ul>
+                    </nav>
+                </div>
+                <div id="right-content" class="right">
+                    <div class="title">
+                        <h2 id="titrePage">Liste des produits</h2>
+                    </div>
+                    <div class="search">
+                        <form>
+                            <input type="search" name="Rechercher" id="search" placeholder="Rechercher">
+                        </form>
+                        <button onclick="ajouterProduit()" id="btnAdd">+ Ajouter</button>
+                    </div>
+                    <div class="contenu">
+                        <table>
+                            <thead class="fixe">
+                                <tr>
+                                    <th>Référence</th>
+                                    <th>Catégorie</th>
+                                    <th>Libellé</th>
+                                    <th>Prix</th>
+                                    <th>En Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tableBody">
+                                <!-- Les produits seront insérés dynamiquement en JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="modal d-none">
+            <div class="modal-content">
+                <h2>Modifier le produit</h2>
+                <form id="modalEdit">
+                    <input type="hidden" id="modal-reference">
+
+                    <label>Catégorie :</label>
+                    <input type="text" id="modal-categorie">
+
+                    <label>Libellé :</label>
+                    <input type="text" id="modal-libelle">
+
+                    <label>Prix :</label>
+                    <input type="number" id="modal-prix" step="0.01">
+
+                    <label>Stock :</label>
+                    <input type="number" id="modal-stock">
+
+                    <div class="btn-form">
+                        <button onclick="fermerModal()">Annuler</button>
+                        <button type="submit">Enregistrer</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalAdd" class="modal d-none">
+            <div class="modal-add-content">
+                <form id="addProduct">
+                    <h2>Ajouter un produit</h2>
+                    <label>Référence :</label>
+                    <input type="text" id="addReference">
+
+                    <label>Catégorie :</label>
+                    <select id="addCategorie">
+                        <option>Choisir la catégorie</option>
+                        <option>Téléphones</option>
+                        <option>Télévisions</option>
+                        <option>Audio</option>
+                        <option>Appareils photo</option>
+                        <option>Ordinateurs de bureau</option>
+                        <option>Ordinateurs portables</option>
+                        <option>Tablettes</option>
+                    </select>
+
+                    <label>Libellé :</label>
+                    <input type="text" id="addLibelle">
+
+                    <label>Fournisseur :</label>
+                    <select id="addFournisseur">
+                        <option>Choix indisponible</option>
+                    </select>
+
+                    <label>Prix de vente conseillé :</label>
+                    <input type="number" id="addPrix" step="0.01">
+
+                    <label>Description :</label>
+                    <textarea id="addDescription"></textarea>
+
+                    <label>En stock :</label>
+                    <input type="number" id="addStock">
+
+                    <label>Photos :</label>
+                    <input type="file" name="image" accept="image/*" id="addPhoto" multiple>
+
+                    <div>
+                        <button type="button" onclick="fermerModalAdd()">Annuler</button>
+                        <button type="submit">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="modalView" class="modal d-none">
+            <div class="modal-view-content">
+                <h2>Détails du Produit</h2>
+                <p><strong>Référence :</strong> <span id="viewReference"></span></p>
+                <div class="modal-body">
+                    <img id="viewPhoto" src="" alt="Photo du produit" class="product-photo">
+
+                    <p><strong>Libellé :</strong> <span id="viewLibelle"></span></p>
+                    <p><strong>Description :</strong> <span id="viewDescription"></span></p>
+                    <p><strong>Stock :</strong> <span id="viewStock"></span></p>
+                    <p><strong>Prix :</strong> <span id="viewPrix"></span>€</p>
+                </div>
+                <button onclick="fermerModalView()">Fermer</button>
+            </div>
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
